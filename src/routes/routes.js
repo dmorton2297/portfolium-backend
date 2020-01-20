@@ -8,7 +8,7 @@ const router = express.Router();
  * Authentication Route
  */
 const authController = new AuthController();
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
     res.status(200).send(authController.loginUser('test', 'test'));
 });
 
