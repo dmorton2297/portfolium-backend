@@ -1,7 +1,9 @@
+import { user } from "../mocks.js";
+
 class AuthController {
     loginUser(email, password) {
         return ({
-            user: { id: 1, name: 'Dan Morton' }
+            ...user
         })
     }
 };
