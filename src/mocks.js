@@ -7,6 +7,8 @@ export const user = {
     email: 'dmorton@wmp.com',
     linkedin: 'https://www.linkedin.com/in/dan-morton-a10a83101',
     github: 'https://github.com/dmorton2297',
+    summary: 'I am a software engineer out of Chicago IL. I am a huge fan of Javascript. You can typically find me writing React. I work professionally as a technology consultant at West Monroe Partners.',
+    tags: ['Javascript', 'React', 'Angular', 'Node', 'Hooks'],
     projects: [
         {
             id: 1,
