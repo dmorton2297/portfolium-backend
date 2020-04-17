@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const user = {
     id: 1,
     name: 'Dan Morton',
@@ -18,3 +20,40 @@ export const user = {
         }
     ]
 };
+
+const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+export const projects = [
+    {
+        id: 1,
+        name: 'News Wesbite',
+        description: lorem,
+        github: 'http://google.com',
+        image: 'gs://pres-demo.appspot.com/project1.png',
+        projectLink: 'http://google.com',
+        createdAt: moment().format(),
+        updatedAt: moment().format(),
+        tags: ['Tag1', 'Tag2', 'Tag3']
+    },
+    {
+        id: 2,
+        name: 'Spoof News Wesbite',
+        description: lorem,
+        github: 'http://google.com',
+        image: 'gs://pres-demo.appspot.com/project2.png',
+        projectLink: 'http://google.com',
+        createdAt: moment().format(),
+        updatedAt: moment().format(),
+        tags: ['Tag1', 'Tag2', 'Tag3']
+    },
+    {
+        id: 3,
+        name: 'News Wesbite',
+        description: lorem,
+        github: 'http://google.com',
+        image: 'gs://pres-demo.appspot.com/project3.png',
+        projectLink: 'http://google.com',
+        createdAt: moment().format(),
+        updatedAt: moment().format(),
+        tags: ['Tag1', 'Tag2', 'Tag3']
+    }
+]
