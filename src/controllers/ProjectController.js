@@ -2,9 +2,9 @@ import { projects } from '../mocks.js';
 
 class ProjectController {
     getPrograms(userId) {
-        return ({
+        return ([
             ...projects
-        })
+        ])
     };
 };
 
