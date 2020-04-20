@@ -27,6 +27,14 @@ router.get('/user/:id', (req, res) => {
 const projectController = new ProjectController();
 router.get('/user/:id/projects', (req, res) => {
     res.status(200).send(projectController.getPrograms(req.params.id));
-})
+});
+
+router.post('/user/:id/projects/create', (req, res) => {
+    res.status(200).send(projectController.createProject(req.body, req.params.userId));
+});
+
+router.post('/user/:id/projects/edit', (req, res) => {
+    res.status(200).send(projectController.editProject(req.body, req.params.userId));
+});
 
 export default router;

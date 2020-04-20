@@ -32,6 +32,8 @@ export const projects = [
         projectLink: 'http://google.com',
         createdAt: moment().format(),
         updatedAt: moment().format(),
+        website: 'website.com',
+        demoVideo: 'google.com',
         tags: ['Tag1', 'Tag2', 'Tag3']
     },
     {
@@ -43,6 +45,8 @@ export const projects = [
         projectLink: 'http://google.com',
         createdAt: moment().format(),
         updatedAt: moment().format(),
+        website: 'website.com',
+        demoVideo: 'google.com',
         tags: ['Tag1', 'Tag2', 'Tag3']
     },
     {
@@ -54,6 +58,8 @@ export const projects = [
         projectLink: 'http://google.com',
         createdAt: moment().format(),
         updatedAt: moment().format(),
+        website: 'website.com',
+        demoVideo: 'google.com',
         tags: ['Tag1', 'Tag2', 'Tag3']
     }
 ]
