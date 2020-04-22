@@ -35,13 +35,19 @@ class ProjectController {
         p.name = project.name;
         p.description = project.description;
         p.github = project.github;
-        p.projectLink = project.projectLink,
-        p.updatedAt = moment().format(),
-        p.website = project.website(),
-        p.demoVideo = project.demoVideo(),
+        p.projectLink = project.projectLink;
+        p.updatedAt = moment().format();
+        p.website = project.website;
+        p.demoVideo = project.demoVideo;
         p.tags = project.tags
 
         return p;
+    }
+
+    deleteProject(project, userId) {
+        const toBeDelete = _projects.find(x => x.id === project.id);
+        _projects = _projects.filter(x => x.id !== project.id);
+        return toBeDelete;
     }
 };
 

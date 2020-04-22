@@ -37,4 +37,8 @@ router.post('/user/:id/projects/edit', (req, res) => {
     res.status(200).send(projectController.editProject(req.body, req.params.userId));
 });
 
+router.post('/user/:id/projects/delete', (req, res) => {
+    res.status(200).send(projectController.deleteProject(req.body, req.params.userId));
+});
+
 export default router;
