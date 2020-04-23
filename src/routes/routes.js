@@ -21,6 +21,10 @@ router.get('/user/:id', (req, res) => {
     res.status(200).send(userController.getUser(req.params.id));
 });
 
+router.post('/user/:id/update', (req, res) => {
+    res.status(200).send(userController.updateUser(req.body, req.params.id));
+});
+
 /**
  * Project Routes
  */

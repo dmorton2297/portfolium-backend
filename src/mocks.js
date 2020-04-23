@@ -62,4 +62,8 @@ export const projects = [
         demoVideo: 'google.com',
         tags: ['Tag1', 'Tag2', 'Tag3']
     }
-]
+];
+
+export const users = [
+    user
+];
