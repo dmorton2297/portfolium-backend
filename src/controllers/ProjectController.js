@@ -6,7 +6,6 @@ let _projects = [
 ];
 
 class ProjectController {
-      
     getPrograms(userId) {
         return ([
             ..._projects
@@ -14,7 +13,6 @@ class ProjectController {
     };
 
     createProject(project, userId) {
-        console.log(project);
         const id = _projects.length + 1;
         _projects = [
             ..._projects, 
