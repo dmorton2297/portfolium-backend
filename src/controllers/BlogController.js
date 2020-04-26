@@ -11,11 +11,22 @@ class BlogController {
         return _blogs.find(x => `${x.userId}` === userId);
     };
 
+    editBlogDetails(blog, userId) {
+        console.log(blog);
+        const b = _blogs.find(x => `${x.userId}` === userId);
+        b.title = blog.title;
+        b.description = blog.description;
+        b.tags = blog.tags;
+        return b;
+
+    }
+
     getBlogPost(id, userId) {
         const blog = _blogs.find(x => `${x.userId}` === userId);
         const post = blog.blogPosts.find(x => `${x.id}` === id);
         return post;
     }
+
 
     createBlogPost(blog, userId) {
         console.log('in here');

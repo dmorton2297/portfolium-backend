@@ -58,6 +58,10 @@ router.post('/user/:id/blog', (req, res) => {
     res.status(200).send(blogController.createBlogPost(req.body, req.params.id));
 })
 
+router.post('/user/:id/blog/edit', (req, res) => {
+    res.status(200).send(blogController.editBlogDetails(req.body, req.params.id));
+});
+
 router.post('/user/:id/blog/posts/edit', (req, res) => {
     // put controller logic here
     res.status(200).send(blogController.editBlogPost(req.body, req.params.id));
