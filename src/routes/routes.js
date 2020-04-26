@@ -2,6 +2,7 @@ import express from 'express';
 import UserController from '../controllers/UserController.js';
 import AuthController from '../controllers/AuthController.js';
 import ProjectController from '../controllers/ProjectController.js';
+import BlogController from '../controllers/BlogController.js';
 
 const router = express.Router();
 
@@ -34,15 +35,44 @@ router.get('/user/:id/projects', (req, res) => {
 });
 
 router.post('/user/:id/projects/create', (req, res) => {
-    res.status(200).send(projectController.createProject(req.body, req.params.userId));
+    res.status(200).send(projectController.createProject(req.body, req.params.id));
 });
 
 router.post('/user/:id/projects/edit', (req, res) => {
-    res.status(200).send(projectController.editProject(req.body, req.params.userId));
+    res.status(200).send(projectController.editProject(req.body, req.params.id));
 });
 
 router.post('/user/:id/projects/delete', (req, res) => {
-    res.status(200).send(projectController.deleteProject(req.body, req.params.userId));
+    res.status(200).send(projectController.deleteProject(req.body, req.params.id));
 });
+
+/**
+ * Blog Routes
+ */
+const blogController = new BlogController();
+router.get('/user/:id/blog', (req, res) => {
+    res.status(200).send(blogController.getBlog(req.params.id))
+});
+
+router.post('/user/:id/blog', (req, res) => {
+    res.status(200).send(blogController.createBlogPost(req.body, req.params.id));
+})
+
+router.post('/user/:id/blog/posts/edit', (req, res) => {
+    // put controller logic here
+    res.status(200).send(blogController.editBlogPost(req.body, req.params.id));
+});
+
+router.post('/user/:id/blog/posts/delete', (req, res) => {
+    // put controller logic here
+    res.status(200).send(blogController.deleteBlogPost(req.body, req.params.id));
+});
+
+router.get('/blog/:id/:userId', (req, res) => {
+    res.status(200).send(blogController.getBlogPost(req.params.id, req.params.userId));
+})
+
+
+
 
 export default router;
