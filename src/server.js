@@ -48,6 +48,15 @@ app.use((req, res, next) => {
         next();
         return;
     }
+
+    if (!req.headers.authorization) {
+        // Request NOT Authenticated
+        logger.error('Authorization token not set');
+        req.authenticated = false;
+        next();
+        return;
+    }
+
     admin.auth().verifyIdToken(req.headers.authorization)
         .then(function (decodedToken) {
             // Request Authenticated

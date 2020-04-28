@@ -7,7 +7,7 @@ import BlogController from '../controllers/BlogController.js';
 const router = express.Router();
 
 router.use((req, res, next) => {
-    if (req.autneticated === 'false') {
+    if (!req.authenticated) {
         return res.status(401).send('Unauthorized');
     }
     next();
@@ -26,6 +26,7 @@ router.post('/login', (req, res) => {
  */
 const userController = new UserController();
 router.get('/user/:id', (req, res) => {
+    console.log('in here');
     res.status(200).send(userController.getUser(req.params.id));
 });
 
