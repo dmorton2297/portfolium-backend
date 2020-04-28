@@ -12,7 +12,6 @@ class BlogController {
     };
 
     editBlogDetails(blog, userId) {
-        console.log(blog);
         const b = _blogs.find(x => `${x.userId}` === userId);
         b.title = blog.title;
         b.description = blog.description;
@@ -29,7 +28,6 @@ class BlogController {
 
 
     createBlogPost(blog, userId) {
-        console.log('in here');
         const b = _blogs.find(x => `${x.userId}` === userId);
         b.blogPosts = [
             ...b.blogPosts,
@@ -45,7 +43,6 @@ class BlogController {
     }
 
     editBlogPost(blogPost, userId) {
-        console.log('in here');
         const b = _blogs.find(x => `${x.userId}` === userId);
         const p = b.blogPosts.find(x => `${x.id}` === blogPost.id);
         p.text = blogPost.text;
@@ -56,11 +53,8 @@ class BlogController {
     }
 
     deleteBlogPost(blogPost, userId) {
-        console.log(blogPost);
-        console.log(userId);
         const b = _blogs.find(x => `${x.userId}` === userId);
         const p = b.blogPosts.find(x => `${x.id}` === `${blogPost.id}`);
-        console.log(p);
         b.blogPosts = b.blogPosts.filter(x => `${x.id}` !== `${p.id}`);
         return p;
     }

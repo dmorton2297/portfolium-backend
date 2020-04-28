@@ -6,6 +6,13 @@ import BlogController from '../controllers/BlogController.js';
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+    if (req.autneticated === 'false') {
+        return res.status(401).send('Unauthorized');
+    }
+    next();
+})
+
 /**
  * Authentication Route
  */

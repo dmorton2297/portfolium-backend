@@ -6,6 +6,7 @@ export const user = {
     title: 'Technology Consultant - Software Engineering',
     company: 'West Monroe partners',
     profileImage: 'https://avatars0.githubusercontent.com/u/10928036?s=460&v=4',
+    authEmail: 'dmorton2297@gmail.com',
     email: 'dmorton@wmp.com',
     linkedin: 'https://www.linkedin.com/in/dan-morton-a10a83101',
     github: 'https://github.com/dmorton2297',

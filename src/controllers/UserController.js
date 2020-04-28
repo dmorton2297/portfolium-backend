@@ -6,7 +6,7 @@ let _users = [
 
 class UserController {
     getUser(id) {
-        return _users.find(x => `${x.id}` === id);
+        return _users.find(x => `${x.authEmail}` === id);
     };
 
     updateUser(user, id) {
