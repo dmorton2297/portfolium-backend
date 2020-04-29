@@ -34,6 +34,7 @@ admin.initializeApp({
 });
 logger.info('Fire base initialized');
 
+console.log(fireBaseServiceAccount.private_key);
 //=========== Authentication middleware ===========
 app.use((req, res, next) => {
     const m = moment();
