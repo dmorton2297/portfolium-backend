@@ -1,51 +1,43 @@
-import { projects } from '../mocks.js';
+import { __projects, mockImage } from '../mocks.js';
 import moment from 'moment';
+import Project from '../dal/project.js';
 
 let _projects = [
-    ...projects
+    ...__projects
 ];
 
 class ProjectController {
-    getPrograms(userId) {
-        return ([
-            ..._projects
-        ])
+
+    constructor() {
+        this.dal = new Project();
+    }
+
+    async getPrograms(userId) {
+        const projects = await this.dal.getProjects(userId);
+        return projects;
     };
 
-    createProject(project, userId) {
-        const id = _projects.length + 1;
-        _projects = [
-            ..._projects, 
-            {
-                id,
-                ...project,
+    async createProject(project, userId) {
+        console.log('this called');
+        const proj = {
+            ...project,
                 createdAt: moment().format(),
                 updatedAt: moment().format(),
-                image: projects[0].image
-            }
-        ]
-        return _projects[_projects.length - 1];
+                image: mockImage,
+                userId
+        };
+        const deletedProject = await this.dal.createProject(proj);
+        return deletedProject;
     } 
 
-    editProject(project, userId) {
-        const p = _projects.find(x => x.id === project.id);
-        p.id = project.id;
-        p.name = project.name;
-        p.description = project.description;
-        p.github = project.github;
-        p.projectLink = project.projectLink;
-        p.updatedAt = moment().format();
-        p.website = project.website;
-        p.demoVideo = project.demoVideo;
-        p.tags = project.tags
-
+    async editProject(project, userId) {
+        const p = await this.dal.editProject(project);
         return p;
     }
 
-    deleteProject(project, userId) {
-        const toBeDelete = _projects.find(x => x.id === project.id);
-        _projects = _projects.filter(x => x.id !== project.id);
-        return toBeDelete;
+    async deleteProject(project, userId) {
+        await this.dal.deleteProject(project._id);
+        return project;
     }
 };
 

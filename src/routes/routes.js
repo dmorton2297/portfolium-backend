@@ -25,9 +25,10 @@ router.post('/login', (req, res) => {
  * User Routes
  */
 const userController = new UserController();
-router.get('/user/:id', (req, res) => {
+router.get('/user/:id', async (req, res) => {
     console.log('in here');
-    res.status(200).send(userController.getUser(req.params.id));
+    const u = await userController.getUser(req.params.id);
+    res.status(200).send(u);
 });
 
 router.post('/user/:id/update', (req, res) => {
@@ -38,20 +39,24 @@ router.post('/user/:id/update', (req, res) => {
  * Project Routes
  */
 const projectController = new ProjectController();
-router.get('/user/:id/projects', (req, res) => {
-    res.status(200).send(projectController.getPrograms(req.params.id));
+router.get('/user/:id/projects', async (req, res) => {
+    const projects = await projectController.getPrograms(req.params.id);
+    res.status(200).send(projects);
 });
 
-router.post('/user/:id/projects/create', (req, res) => {
-    res.status(200).send(projectController.createProject(req.body, req.params.id));
+router.post('/user/:id/projects/create', async (req, res) => {
+    const projects = await projectController.createProject(req.body, req.params.id);
+    res.status(200).send(projects);
 });
 
-router.post('/user/:id/projects/edit', (req, res) => {
-    res.status(200).send(projectController.editProject(req.body, req.params.id));
+router.post('/user/:id/projects/edit', async (req, res) => {
+    const project = await projectController.editProject(req.body, req.params.id);
+    res.status(200).send(project);
 });
 
-router.post('/user/:id/projects/delete', (req, res) => {
-    res.status(200).send(projectController.deleteProject(req.body, req.params.id));
+router.post('/user/:id/projects/delete', async (req, res) => {
+    const deleted = await projectController.deleteProject(req.body, req.params.id);
+    res.status(200).send(deleted);
 });
 
 /**

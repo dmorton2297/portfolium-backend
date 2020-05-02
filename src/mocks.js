@@ -12,18 +12,13 @@ export const user = {
     github: 'https://github.com/dmorton2297',
     summary: 'I am a software engineer out of Chicago IL. I am a huge fan of Javascript. You can typically find me writing React. I work professionally as a technology consultant at West Monroe Partners.',
     tags: ['Javascript', 'React', 'Angular', 'Node', 'Hooks'],
-    projects: [
-        {
-            id: 1,
-            name: 'Streamline',
-            description: 'Task management software with integrated ML to analyze/predict task estimation.',
-            images: []
-        }
-    ]
 };
 
+export const mockImage = 'https://firebasestorage.googleapis.com/v0/b/pres-demo.appspot.com/o/project1.png?alt=media&token=45022970-7073-4eac-bd00-f7cf895f42de';
+
+
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-export const projects = [
+export const __projects = [
     {
         id: 1,
         name: 'News Wesbite',
@@ -35,7 +30,8 @@ export const projects = [
         updatedAt: moment().format(),
         website: 'website.com',
         demoVideo: 'google.com',
-        tags: ['Tag1', 'Tag2', 'Tag3']
+        tags: ['Tag1', 'Tag2', 'Tag3'],
+        userId: '5eab7a1fc5d36e03b4c002a4'
     },
     {
         id: 2,
@@ -48,7 +44,8 @@ export const projects = [
         updatedAt: moment().format(),
         website: 'website.com',
         demoVideo: 'google.com',
-        tags: ['Tag1', 'Tag2', 'Tag3']
+        tags: ['Tag1', 'Tag2', 'Tag3'],
+        userId: '5eab7a1fc5d36e03b4c002a4'
     },
     {
         id: 3,
@@ -61,7 +58,8 @@ export const projects = [
         updatedAt: moment().format(),
         website: 'website.com',
         demoVideo: 'google.com',
-        tags: ['Tag1', 'Tag2', 'Tag3']
+        tags: ['Tag1', 'Tag2', 'Tag3'],
+        userId: '5eab7a1fc5d36e03b4c002a4'
     }
 ];
 
@@ -302,7 +300,7 @@ export const blogs = [
     {
         id: 1, 
         title: 'This is a blog title',
-        userId: 1,
+        userId: '5eab7a1fc5d36e03b4c002a4',
         tags: ['Tag1', 'Tag2', 'Tag3'],
         createdAt: moment().format(),
         updatedAt: moment().format(),

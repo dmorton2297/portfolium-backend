@@ -1,15 +1,21 @@
 import { users } from "../mocks.js";
+import User from "../dal/user.js";
 
 let _users = [
     ...users
 ];
 
 class UserController {
-    getUser(id) {
-        return _users.find(x => `${x.authEmail}` === id);
+
+    constructor() {
+        this.dal = new User();
+    }
+
+    async getUser(email) {
+        return await this.dal.getUserByEmail(email);
     };
 
-    updateUser(user, id) {
+    async updateUser(user, id) {
         const u = _users.find(x => `${x.id}` === id);
         u.title = user.title;
         u.company = user.company;

@@ -35,6 +35,14 @@ admin.initializeApp({
 });
 logger.info('Fire base initialized');
 
+const testPreflight = req => {  
+    const controlMethods = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+    const allowHeaders = 'authorization,content-type';
+    const checkOne = (req.headers['access-control-request-method'] && controlMethods.includes(req.headers['access-control-request-method']));
+    const checkTwo = (req.headers['access-control-request-headers'] && allowHeaders.includes( req.headers['access-control-request-headers']));
+    return (checkOne && checkTwo);
+}
+
 //=========== Authentication middleware ===========
 app.use((req, res, next) => {
     const m = moment();
@@ -42,8 +50,7 @@ app.use((req, res, next) => {
     logger.info('======REQUEST======')
     logger.info(`Request occured at: ${m.format()} (${m.format('MM/DD/YYYY hh:mm:ss')})`);
     // Check headers for a preflight request
-    if (req.headers['access-control-request-method'] && req.headers['access-control-request-method'] === 'GET' &&
-        req.headers['access-control-request-headers'] && req.headers['access-control-request-headers'] === 'authorization') {
+    if (testPreflight(req)) {
         req.authenticated = true;
         logger.debug('Preflight Request');
         next();
