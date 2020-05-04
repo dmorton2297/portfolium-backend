@@ -26,7 +26,6 @@ router.post('/login', (req, res) => {
  */
 const userController = new UserController();
 router.get('/user/:id', async (req, res) => {
-    console.log('in here');
     const u = await userController.getUser(req.params.id);
     res.status(200).send(u);
 });

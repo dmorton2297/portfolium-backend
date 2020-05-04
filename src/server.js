@@ -27,7 +27,6 @@ const firebaseServiceAccount = {
     client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
 }
 
-console.log(process.env.FIREBASE_PRIVATE_KEY);
 logger.info('Initializing firebase');
 admin.initializeApp({
     credential: admin.credential.cert(firebaseServiceAccount),

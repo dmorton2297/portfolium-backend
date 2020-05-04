@@ -26,14 +26,12 @@ class BlogController {
     }
 
     async getBlogPost(id, userId) {
-        console.log(id);
         const p = await this.postDal.getBlogPost(id);
         return p;
     }
 
 
     async createBlogPost(blog, userId) {
-        console.log(blog);
         const p = await this.postDal.createBlogPost({
             ...blog,
             image: mockImage,
@@ -43,13 +41,11 @@ class BlogController {
     }
 
     async editBlogPost(blogPost, userId) {
-        console.log(blogPost);
         const p = await this.postDal.editBlogPost(blogPost);
         return p;
     }
 
     async deleteBlogPost(blogPost, userId) {
-        console.log(blogPost);
         const p = await this.postDal.deleteBlogPost(blogPost._id);
         return p;
     }
