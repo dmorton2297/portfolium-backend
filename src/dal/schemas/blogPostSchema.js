@@ -9,4 +9,4 @@ const blogPostSchema = new mongoose.Schema({
     blogId: String
 });
 
-export const blogPostSchema;
+export default blogPostSchema;

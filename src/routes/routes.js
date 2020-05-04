@@ -63,30 +63,35 @@ router.post('/user/:id/projects/delete', async (req, res) => {
  * Blog Routes
  */
 const blogController = new BlogController();
-router.get('/user/:id/blog', (req, res) => {
-    res.status(200).send(blogController.getBlog(req.params.id))
+router.get('/user/:id/blog', async (req, res) => {
+    const b = await blogController.getBlog(req.params.id);
+    res.status(200).send(b);
 });
 
-router.post('/user/:id/blog', (req, res) => {
-    res.status(200).send(blogController.createBlogPost(req.body, req.params.id));
+router.post('/user/:id/blog', async (req, res) => {
+    const p = await blogController.createBlogPost(req.body, req.params.id);
+    res.status(200).send(p);
 })
 
-router.post('/user/:id/blog/edit', (req, res) => {
-    res.status(200).send(blogController.editBlogDetails(req.body, req.params.id));
+router.post('/user/:id/blog/edit', async (req, res) => {
+    const r = await blogController.editBlogDetails(req.body, req.params.id);
+    res.status(200).send(r);
 });
 
-router.post('/user/:id/blog/posts/edit', (req, res) => {
+router.post('/user/:id/blog/posts/edit', async (req, res) => {
     // put controller logic here
-    res.status(200).send(blogController.editBlogPost(req.body, req.params.id));
+    const p = await blogController.editBlogPost(req.body, req.params.id);
+    res.status(200).send(p);
 });
 
-router.post('/user/:id/blog/posts/delete', (req, res) => {
-    // put controller logic here
-    res.status(200).send(blogController.deleteBlogPost(req.body, req.params.id));
+router.post('/user/:id/blog/posts/delete', async (req, res) => {
+    const p = await blogController.deleteBlogPost(req.body, req.params.id);
+    res.status(200).send(p);
 });
 
-router.get('/blog/:id/:userId', (req, res) => {
-    res.status(200).send(blogController.getBlogPost(req.params.id, req.params.userId));
+router.get('/blog/:id/:userId', async (req, res) => {
+    const p = await blogController.getBlogPost(req.params.id, req.params.userId);
+    res.status(200).send(p);
 })
 
 

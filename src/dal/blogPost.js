@@ -3,19 +3,19 @@ import blogPostSchema from './schemas/blogPostSchema.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-export default class BlogPostController {
+export default class BlogPost {
     constructor() {
         mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
     }
 
     async getBlogPosts(blogId) {
         const BlogPost = mongoose.model('blogPost', blogPostSchema);
-        const blogPosts = await BlogsPost.find({ blogId: blogId });
+        const blogPosts = await BlogPost.find({ blogId: blogId });
         return blogPosts;
     };
 
     async getBlogPost(postId) {
-        const BlogPost = mongoose.modelNames('blogPost', blogPostSchema);
+        const BlogPost = mongoose.model('blogPost', blogPostSchema);
         const blogPost = await BlogPost.findById(postId);
         return blogPost;
     }
@@ -37,6 +37,6 @@ export default class BlogPostController {
     async deleteBlogPost(blogPost) {
         const BlogPost = mongoose.model('blogPost', blogPostSchema);
         const p = await BlogPost.findByIdAndDelete(blogPost);
-        return p;
+        return blogPost;
     }
 }

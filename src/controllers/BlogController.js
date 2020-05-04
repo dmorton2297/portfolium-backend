@@ -1,61 +1,56 @@
-import { blogs } from '../mocks.js';
+import { mockImage, blogs } from '../mocks.js';
 import moment from 'moment';
+import Blog from '../dal/blog.js';
+import BlogPost from '../dal/blogPost.js';
 
 let _blogs = [
     ...blogs
 ];
 
 class BlogController {
-    getBlog(userId) {
-        const blog = _blogs.find(x => `${x.userId}` === userId);
-        return _blogs.find(x => `${x.userId}` === userId);
+
+    constructor() {
+        this.dal = new Blog();
+        this.postDal = new BlogPost();
+    }
+
+    async getBlog(userId) {
+        const blog = await this.dal.getBlogByUserId(userId);
+        const posts = await this.postDal.getBlogPosts(blog._id);
+        return {...blog._doc, blogPosts: posts };
     };
 
-    editBlogDetails(blog, userId) {
-        const b = _blogs.find(x => `${x.userId}` === userId);
-        b.title = blog.title;
-        b.description = blog.description;
-        b.tags = blog.tags;
+    async editBlogDetails(blog, userId) {
+        const b = await this.dal.editBlog({...blog, userId });
         return b;
-
     }
 
-    getBlogPost(id, userId) {
-        const blog = _blogs.find(x => `${x.userId}` === userId);
-        const post = blog.blogPosts.find(x => `${x.id}` === id);
-        return post;
-    }
-
-
-    createBlogPost(blog, userId) {
-        const b = _blogs.find(x => `${x.userId}` === userId);
-        b.blogPosts = [
-            ...b.blogPosts,
-            {
-                id: b.blogPosts.length + (1 * Math.random() * 100),
-                ...blog,
-                createdAt: moment().format(),
-                updatedAt: moment().format(),
-                image: b.blogPosts[0].image
-            }
-        ]
-        return b.blogPosts[b.blogPosts.length- 1];
-    }
-
-    editBlogPost(blogPost, userId) {
-        const b = _blogs.find(x => `${x.userId}` === userId);
-        const p = b.blogPosts.find(x => `${x.id}` === blogPost.id);
-        p.text = blogPost.text;
-        p.title = blogPost.title;
-        p.tags = blogPost.tags;
-        p.description = blogPost.description;
+    async getBlogPost(id, userId) {
+        console.log(id);
+        const p = await this.postDal.getBlogPost(id);
         return p;
     }
 
-    deleteBlogPost(blogPost, userId) {
-        const b = _blogs.find(x => `${x.userId}` === userId);
-        const p = b.blogPosts.find(x => `${x.id}` === `${blogPost.id}`);
-        b.blogPosts = b.blogPosts.filter(x => `${x.id}` !== `${p.id}`);
+
+    async createBlogPost(blog, userId) {
+        console.log(blog);
+        const p = await this.postDal.createBlogPost({
+            ...blog,
+            image: mockImage,
+            userId: userId
+        });
+        return p;
+    }
+
+    async editBlogPost(blogPost, userId) {
+        console.log(blogPost);
+        const p = await this.postDal.editBlogPost(blogPost);
+        return p;
+    }
+
+    async deleteBlogPost(blogPost, userId) {
+        console.log(blogPost);
+        const p = await this.postDal.deleteBlogPost(blogPost._id);
         return p;
     }
 };
