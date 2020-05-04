@@ -21,7 +21,6 @@ export default class Blog {
     }
 
     async createBlog(blog) {
-        console.log('we are in here');
         const Blog = mongoose.model('blog', blogSchema);
         const newBlog = new Blog(blog);
         const p = await newBlog.save();
@@ -29,7 +28,6 @@ export default class Blog {
     }
 
     async editBlog(blog) {
-        console.log(blog);
         const Blog = mongoose.model('blog', blogSchema);
         await Blog.findOneAndUpdate({ _id: blog._id }, blog, { new: true, useFindAndModify: false });
         const b = await Blog.findById(blog._id);

@@ -18,7 +18,6 @@ class ProjectController {
     };
 
     async createProject(project, userId) {
-        console.log('this called');
         const proj = {
             ...project,
                 createdAt: moment().format(),

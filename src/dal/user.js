@@ -23,7 +23,6 @@ export default class User {
                 console.error(error);
                 return null;
             }
-            console.log(u);
         })
       }
 };
