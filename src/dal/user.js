@@ -21,8 +21,17 @@ export default class User {
         newUser.save((err, u) => {
             if (err) {
                 console.error(error);
-                return null;
+                return false;
             }
+            return true;
         })
-      }
+    }
+
+    async updateUser(user, id) {
+        const User = mongoose.model('user', userSchema);
+        await User.findOneAndUpdate({ _id: id  }, user)
+        const u = await User.find({ _id: id  });
+        console.log(u);
+        return u;
+    }
 };

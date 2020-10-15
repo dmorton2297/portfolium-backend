@@ -26,6 +26,7 @@ class BlogController {
     }
 
     async getBlogPost(id, userId) {
+        console.log('in here');
         const p = await this.postDal.getBlogPost(id);
         return p;
     }
@@ -34,7 +35,7 @@ class BlogController {
     async createBlogPost(blog, userId) {
         const p = await this.postDal.createBlogPost({
             ...blog,
-            image: mockImage,
+            image: blog.image ? blog.image : null,
             userId: userId
         });
         return p;

@@ -3,6 +3,7 @@ dotenv.config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import router from './routes/routes.js';
+import prouter from './routes/publicRoutes.js';
 import cors from 'cors';
 import Logger from './logger.js';
 import moment from 'moment';
@@ -86,6 +87,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 //=========== Setup Router ===========
+app.use('/proute/', prouter );
 app.use('/', router);
 
 // =========== Begin Listening for requests

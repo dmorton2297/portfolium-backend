@@ -19,10 +19,10 @@ class ProjectController {
 
     async createProject(project, userId) {
         const proj = {
-            ...project,
+                ...project,
                 createdAt: moment().format(),
                 updatedAt: moment().format(),
-                image: mockImage,
+                image: project.images.length > 0 ? project.images[0] : null,
                 userId
         };
         const deletedProject = await this.dal.createProject(proj);

@@ -5,6 +5,8 @@ let _users = [
     ...users
 ];
 
+const defaultUserImage = 'https://firebasestorage.googleapis.com/v0/b/pres-demo.appspot.com/o/default-user.png?alt=media&token=35d663f9-8637-4f7d-8a53-97c153c35027';
+
 class UserController {
 
     constructor() {
@@ -16,16 +18,25 @@ class UserController {
     };
 
     async updateUser(user, id) {
-        const u = _users.find(x => `${x.id}` === id);
-        u.title = user.title;
-        u.company = user.company;
-        u.email = user.email;
-        u.summary = user.summary;
-        u.github = user.github;
-        u.linkedin = user.linkedin;
-        u.tags = user.tags;
-
+        console.log(user);
+        const u = await this.dal.updateUser(user, id);
         return u;
+    } 
+
+    async createUser(user, id) {
+        const u = {
+            name: '',
+            title: '',
+            company: '',
+            profileImage: defaultUserImage,
+            authEmail: user.email,
+            email: user.email,
+            linkedin: '',
+            github: '',
+            summary: '',
+            tags: []
+        }
+        return await this.dal.createUser(u);
     }
 };
 

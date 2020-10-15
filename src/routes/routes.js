@@ -7,19 +7,13 @@ import BlogController from '../controllers/BlogController.js';
 const router = express.Router();
 
 router.use((req, res, next) => {
-    if (!req.authenticated) {
+    const isPublic = req.url.includes('/blog/');
+    if (!req.authenticated && !isPublic) {
         return res.status(401).send('Unauthorized');
     }
     next();
 })
 
-/**
- * Authentication Route
- */
-const authController = new AuthController();
-router.post('/login', (req, res) => {
-    res.status(200).send(authController.loginUser('test', 'test'));
-});
 
 /**
  * User Routes
@@ -30,9 +24,20 @@ router.get('/user/:id', async (req, res) => {
     res.status(200).send(u);
 });
 
-router.post('/user/:id/update', (req, res) => {
-    res.status(200).send(userController.updateUser(req.body, req.params.id));
+router.post('/user/:id/update', async (req, res) => {
+    console.log('in here');
+    const user = await userController.updateUser(req.body, req.params.id);
+    return res.status(200).send(user);
 });
+
+router.post('/user/create', async (req, res) => {
+    const created = await userController.createUser(req.body);
+    if (!created) {
+        return res.status(500).send('User not created');
+    } else {
+        return res.status(200);
+    }
+})
 
 /**
  * Project Routes

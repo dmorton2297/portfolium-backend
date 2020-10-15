@@ -1,10 +1,18 @@
 import { user } from "../mocks.js";
+import User from "../dal/user.js";
 
 class AuthController {
-    loginUser(email, password) {
-        return ({
-            ...user
-        })
+    constructor() {
+        this.dal = new User();
+    }
+
+    async userExists(email) {
+        const user = await this.dal.getUserByEmail(email);
+        if (user) {
+            return true;
+        }
+
+        return false;
     }
 };
 
