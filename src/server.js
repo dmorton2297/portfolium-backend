@@ -65,6 +65,8 @@ app.use((req, res, next) => {
         return;
     }
 
+    console.log(req.headers.authorization);
+
     admin.auth().verifyIdToken(req.headers.authorization)
         .then(function (decodedToken) {
             // Request Authenticated
