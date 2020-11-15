@@ -18,7 +18,6 @@ class UserController {
     };
 
     async updateUser(user, id) {
-        console.log(user);
         const u = await this.dal.updateUser(user, id);
         return u;
     } 

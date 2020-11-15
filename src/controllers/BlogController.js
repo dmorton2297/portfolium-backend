@@ -20,23 +20,34 @@ class BlogController {
         return {...blog._doc, blogPosts: posts };
     };
 
+    async getBlogByEmail(email) {
+        const blog = await this.dal.getBlogByEmail(email);
+        const posts = await this.postDal.getBlogPosts (blog._id);
+        return {...blog, blogPosts: posts };
+    }
+
+    async createBlog(blog, userId) {
+        const b = await this.dal.createBlog({ ...blog, userId });
+        return b;
+    }
+
     async editBlogDetails(blog, userId) {
         const b = await this.dal.editBlog({...blog, userId });
         return b;
     }
 
     async getBlogPost(id, userId) {
-        console.log('in here');
         const p = await this.postDal.getBlogPost(id);
         return p;
     }
 
 
-    async createBlogPost(blog, userId) {
+    async createBlogPost(blog, userId, email) {
         const p = await this.postDal.createBlogPost({
             ...blog,
             image: blog.image ? blog.image : null,
-            userId: userId
+            userId: userId,
+            userEmail: email
         });
         return p;
     }

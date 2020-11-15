@@ -31,7 +31,6 @@ export default class User {
         const User = mongoose.model('user', userSchema);
         await User.findOneAndUpdate({ _id: id  }, user)
         const u = await User.find({ _id: id  });
-        console.log(u);
         return u;
     }
 };

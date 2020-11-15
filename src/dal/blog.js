@@ -14,6 +14,12 @@ export default class Blog {
         return blog;
     }
 
+    async getBlogByEmail(email) {
+        const Blog = mongoose.model('blog', blogSchema);
+        const blog = await Blog.findOne({ userEmail: email });
+        return blog._doc;
+    }
+
     async getBlogByUserId(userId) {
         const Blog = mongoose.model('blog', blogSchema);
         const blog = await Blog.find({ userId: userId });

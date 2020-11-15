@@ -72,6 +72,7 @@ app.use((req, res, next) => {
             logger.debug(`Extracted user emai: ${decodedToken.email}`);
             logger.info('Request Authenticated');
             req.authenticated = true;
+            req.authEmail = decodedToken.email;
             next();
         }).catch(function (error) {
             // Request NOT Authenticated

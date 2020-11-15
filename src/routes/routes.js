@@ -1,13 +1,13 @@
 import express from 'express';
 import UserController from '../controllers/UserController.js';
-import AuthController from '../controllers/AuthController.js';
+import AuthController from '../controllers/AuthController.js';``
 import ProjectController from '../controllers/ProjectController.js';
 import BlogController from '../controllers/BlogController.js';
 
 const router = express.Router();
 
 router.use((req, res, next) => {
-    const isPublic = req.url.includes('/blog/');
+    const isPublic = !req.url.includes('/user/');
     if (!req.authenticated && !isPublic) {
         return res.status(401).send('Unauthorized');
     }
@@ -25,7 +25,6 @@ router.get('/user/:id', async (req, res) => {
 });
 
 router.post('/user/:id/update', async (req, res) => {
-    console.log('in here');
     const user = await userController.updateUser(req.body, req.params.id);
     return res.status(200).send(user);
 });
@@ -72,10 +71,22 @@ router.get('/user/:id/blog', async (req, res) => {
     res.status(200).send(b);
 });
 
-router.post('/user/:id/blog', async (req, res) => {
-    const p = await blogController.createBlogPost(req.body, req.params.id);
-    res.status(200).send(p);
+router.get('/:email/blog', async (req, res) => {
+    const b = await blogController.getBlogByEmail(req.params.email);
+    res.status(200).send(b);
 })
+
+
+router.post('/user/:id/blog', async (req, res) => {
+    const p = await blogController.createBlogPost(req.body, req.params.id, req.authEmail);
+    res.status(200).send(p);
+});
+
+
+router.post('/user/:id/blog/create', async (req, res) => {
+    const r = await blogController.createBlog(req.body, req.params.id);
+    res.status(200).send(r);
+});
 
 router.post('/user/:id/blog/edit', async (req, res) => {
     const r = await blogController.editBlogDetails(req.body, req.params.id);
@@ -96,7 +107,12 @@ router.post('/user/:id/blog/posts/delete', async (req, res) => {
 router.get('/blog/:id/:userId', async (req, res) => {
     const p = await blogController.getBlogPost(req.params.id, req.params.userId);
     res.status(200).send(p);
-})
+});
+
+router.get('/blog/:email/', async (req, res) => {
+    const b = await blogController.getBlogByEmail(req.params.email);
+    res.status(200).send(b);
+});
 
 
 
