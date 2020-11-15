@@ -29,7 +29,7 @@ class BlogController {
     async createBlog(blog, userId) {
         const b = await this.dal.createBlog({ ...blog, userId });
         return b;
-    }
+    }   
 
     async editBlogDetails(blog, userId) {
         const b = await this.dal.editBlog({...blog, userId });
