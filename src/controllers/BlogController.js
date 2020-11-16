@@ -27,6 +27,8 @@ class BlogController {
     }
 
     async createBlog(blog, userId) {
+        console.log(moment.format());
+        
         const b = await this.dal.createBlog({ ...blog, userId });
         return b;
     }   
@@ -43,17 +45,23 @@ class BlogController {
 
 
     async createBlogPost(blog, userId, email) {
+
+        const createdAt = moment().format();
+        const updatedAt = moment().format();
         const p = await this.postDal.createBlogPost({
             ...blog,
             image: blog.image ? blog.image : null,
             userId: userId,
-            userEmail: email
+            userEmail: email,
+            createdAt,
+            updatedAt
         });
         return p;
     }
 
     async editBlogPost(blogPost, userId) {
-        const p = await this.postDal.editBlogPost(blogPost);
+        const updatedAt = moment().format();
+        const p = await this.postDal.editBlogPost({ blogPost, updatedAt });
         return p;
     }
 

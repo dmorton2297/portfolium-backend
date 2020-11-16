@@ -9,7 +9,9 @@ const blogPostSchema = new mongoose.Schema({
     },
     description: String,
     tags: [String],
-    blogId: String
+    blogId: String,
+    createdAt: String,
+    updatedAt: String,
 });
 
 export default blogPostSchema;
