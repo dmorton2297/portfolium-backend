@@ -61,7 +61,7 @@ class BlogController {
 
     async editBlogPost(blogPost, userId) {
         const updatedAt = moment().format();
-        const p = await this.postDal.editBlogPost({ blogPost, updatedAt });
+        const p = await this.postDal.editBlogPost({ ...blogPost, updatedAt });
         return p;
     }
 
