@@ -24,9 +24,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "firebase-admin": "^8.11.0",
+    "firebase-admin": "^9.4.1",
+    "install": "^0.13.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.9.11"
+    "mongoose": "^5.9.11",
+    "npm": "^7.0.12"
   },
   "devDependencies": {}
 }
