@@ -17,7 +17,16 @@ class BlogController {
     async getBlog(userId) {
         const blog = await this.dal.getBlogByUserId(userId);
         const posts = await this.postDal.getBlogPosts(blog._id);
-        return {...blog._doc, blogPosts: posts };
+        const p = posts.sort((a, b) => {
+            if (b.createdAt < a.createdAt) {
+                return -1;
+            } else if (a.createdAt === b.createdAt) {
+                return 0;
+            } else {
+                return 1;
+            }
+        })
+        return {...blog._doc, blogPosts: p };
     };
 
     async getBlogByEmail(email) {
