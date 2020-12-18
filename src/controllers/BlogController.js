@@ -32,7 +32,16 @@ class BlogController {
     async getBlogByEmail(email) {
         const blog = await this.dal.getBlogByEmail(email);
         const posts = await this.postDal.getBlogPosts (blog._id);
-        return {...blog, blogPosts: posts };
+        const p = posts.sort((a, b) => {
+            if (b.createdAt < a.createdAt) {
+                return -1;
+            } else if (a.createdAt === b.createdAt) {
+                return 0;
+            } else {
+                return 1;
+            }
+        })
+        return {...blog, blogPosts: p };
     }
 
     async createBlog(blog, userId) {
